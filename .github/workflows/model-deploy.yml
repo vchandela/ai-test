@@ -1,0 +1,33 @@
+name: Model Deployment
+
+on:
+  push:
+    paths:
+      - 'models/**'
+      - 'configs/**'
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.9'
+          
+      - name: Install dependencies
+        run: |
+          pip install -r requirements.txt
+          
+      - name: Authenticate to Google Cloud
+        uses: google-github-actions/auth@v0
+        with:
+          credentials_json: ${{ secrets.GCP_SA_KEY }}
+          
+      - name: Deploy Model
+        run: |
+          python src/example.py
+        env:
+          CONFIG_PATH: configs/prod.yaml 

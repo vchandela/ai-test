@@ -1,0 +1,14 @@
+model_name: model
+environment: prod
+project_id: moj-prod
+region: asia-southeast1
+bucket_name: livestream-recording-service-prod-bucket-temp
+deployment:
+  target: vertex_ai
+  machine_type: n1-standard-2
+  min_replicas: 1
+  max_replicas: 2
+framework:
+  name: sklearn
+  version: "1.0"
+custom_requirements: {}  # Optional custom pip requirements 
