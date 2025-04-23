@@ -104,7 +104,7 @@ class MLModelDeployer:
                 self.logger.info(f"Custom container built: {container_image}")
             else:
                 container_image = (
-                    f"us-docker.pkg.dev/vertex-ai/prediction/{framework}-cpu.{version}:latest"
+                    "us-docker.pkg.dev/vertex-ai/prediction/sklearn-cpu.1-0:latest"
                 )
                 self.logger.info(f"Using default container image: {container_image}")
 

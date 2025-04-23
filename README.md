@@ -16,7 +16,7 @@ A flexible ML model deployment system that supports deploying models to GCP serv
 - check if the model path is valid -- directory with `.pkl` or `SavedModel` file
 - upload the model artifact to GCS
 - `deployment_target` -- `vertex_ai` or `ray` (TBD)
-  - for vertex AI, create a custom continer (using Docker) or a built-in container.
+  - for vertex AI, create a custom container (using Docker) or a built-in container.
     - For this demo, I've used `us-docker.pkg.dev/vertex-ai/prediction/sklearn-cpu.1-0:latest`
     - Vertex AI basically loads the model artifact to a container and exposes HTTP endpoints that we can use for inference. All the auto-scaling and security is handled automatically.
 - for CI/CD, we can use Github Actions. It will notice any changes in `models/` and `configs/` and start a new deployment
@@ -39,6 +39,11 @@ pip install -r requirements.txt
 3. Set up GCP credentials for local development:
 ```bash
 export GOOGLE_APPLICATION_CREDENTIALS="path/to/your/service-account-key.json"
+```
+
+4. Run the code
+```bash
+python src/example.py
 ```
 
 ## CI/CD
